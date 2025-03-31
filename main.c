@@ -20,13 +20,13 @@ int main() {
         if (scanf("%d", &opcion) != 1) {  
             printf("Entrada invalida.\n");
             while (getchar() != '\n');  
-            continue;  // Volver al inicio del bucle
+            continue; 
         }
         
-        // Limpiar el buffer después de leer la opción
+        
         while (getchar() != '\n');
 
-        // Verificar si el producto está registrado para opciones que lo requieren
+        
         if (opcion >= 2 && opcion <= 5 && cont == 0) {
             printf("\nPrimero tiene que registrar un producto.\n");
             continue;
@@ -44,23 +44,23 @@ int main() {
             } while (id < 1);
 
             printf("Ingrese el nombre del producto: ");
-            while (getchar() != '\n');  // Limpiar el buffer
+            while (getchar() != '\n');  
             fgets(nombre, 30, stdin);
 
             do {
                 printf("Ingrese la cantidad inicial en stock: ");
                 if (scanf("%d", &stock) != 1 || stock < 1) {
-                    printf("Cantidad invalida. Debe ser un número entero positivo.\n");
-                    // Limpiar el buffer de entrada
+                    printf("Cantidad invalida. Debe ser un numero entero positivo.\n");
+                    
                     while ((c = getchar()) != '\n' && c != EOF);
                     stock = -1;
                     continue;
                 }
                 
-                // Verificar si hay caracteres adicionales en la línea (como decimales)
+                
                 if ((c = getchar()) != '\n') {
                     printf("Cantidad invalida. No se permiten decimales.\n");
-                    // Limpiar el resto del buffer
+                    
                     while (c != '\n' && c != EOF) c = getchar();
                     stock = -1;
                 }
@@ -69,20 +69,20 @@ int main() {
             do {
                 printf("Ingrese el precio unitario del producto: ");
                 if (scanf("%f", &precio) != 1 || precio <= 0) {
-                    printf("Precio invalido. Debe ser un número positivo.\n");
-                    // Limpiar el buffer de entrada
+                    printf("Precio invalido.\n");
+                   
                     while ((c = getchar()) != '\n' && c != EOF);
                     precio = -1;
                     continue;
                 }
                 
-                // Limpiar cualquier caracter extra
+               
                 while ((c = getchar()) != '\n' && c != EOF);
                 
             } while (precio <= 0);
 
             cont = 1;
-            printf("\nProducto registrado con éxito.\n");
+            printf("\nProducto registrado con exito.\n");
             break;
         case 2:
             do {
@@ -93,32 +93,7 @@ int main() {
                     cantidad = -1;
                 }
             } while (cantidad < 1 || cantidad > stock);
-
-            // Mostrar y confirmar el precio unitario actual
-            printf("El precio unitario actual es: $%.2f\n", precio);
-            printf("¿Desea modificar el precio para esta venta? (1-Sí, 0-No): ");
-            int modificar;
-            scanf("%d", &modificar);
             
-            if (modificar == 1) {
-                do {
-                    printf("Ingrese el nuevo precio unitario para esta venta: ");
-                    if (scanf("%f", &precio) != 1 || precio <= 0) {
-                        printf("Precio invalido. Debe ser un número positivo.\n");
-                        // Limpiar el buffer de entrada
-                        while ((c = getchar()) != '\n' && c != EOF);
-                        precio = -1;
-                        continue;
-                    }
-                    
-                    // Limpiar cualquier caracter extra
-                    while ((c = getchar()) != '\n' && c != EOF);
-                    
-                } while (precio <= 0);
-                
-                printf("Precio actualizado a: $%.2f\n", precio);
-            }
-
             venta = cantidad * precio;
 
             if (venta > 50) {  
@@ -136,12 +111,12 @@ int main() {
             do {
                 printf("Ingrese la cantidad a agregar al stock: ");
                 if (scanf("%d", &cantidad) != 1 || cantidad < 1) {  
-                    printf("Stock invalido.\n");
+                    printf("Stock invalido. Ingrese enter para ingresar un stock nuevo\n");
                     while (getchar() != '\n');  
                     cantidad = -1;
                 }
-                // Limpiar el buffer
-                while (getchar() != '\n');
+               
+                
 
             } while (cantidad < 1);
 
@@ -152,7 +127,7 @@ int main() {
         case 4:
             printf("\nInformacion del producto:\n");
             printf("ID: %d\n", id);
-            printf("Nombre: %s", nombre); // Se quita \n porque fgets ya incluye un salto de línea
+            printf("Nombre: %s", nombre); 
             printf("Stock disponible: %d\n", stock);
             printf("Precio unitario: $%.2f\n", precio);
             break;
